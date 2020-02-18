@@ -16,6 +16,10 @@ public:
 		topElementIdx = -1;
 	}
 
+	~stack(){
+		delete [] stk;
+	}
+
 	T pop(){
 		if(topElementIdx < 0)
 			throw runtime_error("Stack Underflow!");
@@ -82,7 +86,6 @@ int main(){
 		cout << "Error: " << e.what() << endl;
 	}
 	s.dispaly();
-
 
 	return 0;
 }
