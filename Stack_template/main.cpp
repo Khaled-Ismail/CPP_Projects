@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -17,13 +18,13 @@ public:
 
 	T pop(){
 		if(topElementIdx < 0)
-			throw "Stack Underflow!";
+			throw runtime_error("Stack Underflow!");
 		return stk[topElementIdx--];
 	}
 
 	void push(T element){
 		if (topElementIdx == size - 1)
-			throw "Stack Overflow!";
+			throw runtime_error("Stack Overflow!");
 		stk[++topElementIdx] = element;
 	}
 
@@ -43,6 +44,11 @@ public:
 	}
 };
 
+class stringException : public exception{
+
+
+};
+
 int main(){
 
 	int size = 5;
@@ -58,8 +64,22 @@ int main(){
 		s.push(6);
 		s.push(5);
 	}
-	catch(string s){
-		cout << "Error: " << s << endl;
+	catch(const exception & e){
+		cout << "Error: " << e.what() << endl;
+	}
+	s.dispaly();
+
+	try{
+		s.pop();
+		s.pop();
+		s.pop();
+		s.pop();
+		s.pop();
+		s.pop();
+		s.pop();
+	}
+	catch(const exception & e){
+		cout << "Error: " << e.what() << endl;
 	}
 	s.dispaly();
 
